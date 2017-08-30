@@ -7,9 +7,9 @@ use App\Tbl_status;
 use App\Http\Requests\StatusRequest;
 
 /**
- * fb: Kim Chhoin
- * Tell: 0967676964
- * Date:05/17/2017
+ * fb: imsamnang
+ * Tell: 078343143
+ * Date:08/29/2017
  */
 class StatusMainController extends Controller
 {
@@ -23,12 +23,7 @@ class StatusMainController extends Controller
 		$this->date = date ( "Y-m-d H:i:s" );
 		
 	}
-	
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $status = $this->status->orderBy('status_id', 'desc')->paginate($this->limit);
@@ -36,22 +31,11 @@ class StatusMainController extends Controller
         return view('admin/status/main/status', compact('status'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('admin.status.main.add_status');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StatusRequest $request)
     {
     	$this->status->status_title			= $request->txtName;
@@ -69,12 +53,6 @@ class StatusMainController extends Controller
     	return back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
       	$id = preg_replace ( '#[^0-9]#', '', $id );
@@ -91,12 +69,6 @@ class StatusMainController extends Controller
       	return redirect('main/status.html');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
     	$id = preg_replace ( '#[^0-9]#', '', $id );
@@ -113,13 +85,6 @@ class StatusMainController extends Controller
     	return redirect('main/status.html');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(StatusRequest $request)
     {
     	$id = preg_replace ( '#[^0-9]#', '',  $request->txtId );
@@ -145,12 +110,6 @@ class StatusMainController extends Controller
     	}
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Request $request, $id)
     {
     	$id = preg_replace ( '#[^0-9]#', '',  $id );
